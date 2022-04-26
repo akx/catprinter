@@ -6,6 +6,7 @@ import sys
 import os
 
 from catprinter import logger
+from catprinter.bin_algos import get_algo_ids
 from catprinter.cmds import PRINT_WIDTH, cmds_print_img
 from catprinter.ble import run_ble
 from catprinter.img import read_img, show_preview
@@ -17,8 +18,7 @@ def parse_args():
     args.add_argument('-l', '--log-level', type=str,
                       choices=['debug', 'info', 'warn', 'error'], default='info')
     args.add_argument('-b', '--img-binarization-algo', type=str,
-                      choices=['mean-threshold',
-                               'floyd-steinberg', 'halftone', 'none'],
+                      choices=get_algo_ids() + ['none'],
                       default='floyd-steinberg',
                       help=f'Which image binarization algorithm to use. If \'none\'  \
                              is used, no binarization will be used. In this case the \
